@@ -29,12 +29,12 @@ services:
       - influxdb
   
   speedtest:
-    image: phikai/speedtest
+    image: roest/docker-speedtest-analyser #phikai/speedtest
     container_name: speedtest
     restart: unless-stopped
     network_mode: 'bridge'
     environment:
-      - TEST_INTERVAL=5
+      - CRONJOB_ITERATION=1
     links:
       - influxdb
     depends_on:
