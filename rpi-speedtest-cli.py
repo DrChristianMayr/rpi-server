@@ -34,7 +34,7 @@ ping = ping[0].replace(',', '.')
 download = download[0].replace(',', '.')
 upload = upload[0].replace(',', '.')
 
-if writeCSV==true
+if writeCSV:
     try:
         f = open('./speedtest.csv', 'a+')
         if os.stat('./speedtest.csv').st_size == 0:
@@ -44,7 +44,7 @@ if writeCSV==true
 
     f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
 
-if writeInfluxDB==true
+if writeInfluxDB:
     speed_data = [
         {
             "measurement" : "internet_speed",
