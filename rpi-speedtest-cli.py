@@ -3,7 +3,13 @@ import re
 import subprocess
 import time
 
+testinterval=5 #
 print('start')
+try:
+    testinterval=os.environ['TEST_INTERVAL']
+except:
+    pass
+
 response = subprocess.Popen('speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
 print(response)
 ping = re.findall('Ping:\s(.*?)\s', response, re.MULTILINE)
@@ -23,4 +29,6 @@ except:
 
 f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
 print('Ping: ' + str(ping) + ' ms, Download: ' + str(download) + ' Mbit/s Upload: '+ str(upload) + ' Mbit/s')
+print('Waiting for ' + str(testinterval) + ' seconds')
+time.sleep(testinterval) 
 print('end')
