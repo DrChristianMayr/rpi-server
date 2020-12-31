@@ -6,7 +6,7 @@ from influxdb import InfluxDBClient
 
 testinterval = 5 #
 writeCSV = false
-writeInfluxDB = false
+writeInfluxDB = true
 
 print('start')
 try:
