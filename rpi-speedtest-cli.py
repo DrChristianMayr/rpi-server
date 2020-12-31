@@ -5,8 +5,8 @@ import time
 from influxdb import InfluxDBClient
 
 testinterval = 5 #
-writeCSV = false
-writeInfluxDB = true
+writeCSV = False
+writeInfluxDB = True
 
 print('start')
 try:
