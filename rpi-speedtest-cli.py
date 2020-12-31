@@ -3,7 +3,7 @@ import re
 import subprocess
 import time
 
-echo 'start'
+print('start')
 response = subprocess.Popen('/usr/local/bin/speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
 
 ping = re.findall('Ping:\s(.*?)\s', response, re.MULTILINE)
@@ -22,4 +22,5 @@ except:
     pass
 
 f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
-echo 'end'
+print('Ping: '+, ping,', Download: ',download,', Upload:',upload)
+print('end')
