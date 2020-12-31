@@ -22,5 +22,5 @@ except:
     pass
 
 f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
-print('Ping: ' + str(ping) + ' Download: ' + str(download) + ' Upload: '+ str(upload))
+print('Ping: ' + str(ping) + 'ms, Download: ' + str(download) + 'Mbit/s Upload: '+ str(upload) + ' Mbit/s')
 print('end')
