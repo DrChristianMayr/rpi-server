@@ -5,7 +5,7 @@ import time
 from influxdb import InfluxDBClient
 
 testinterval = 5 #
-writeCSV = False
+writeCSV = True
 writeInfluxDB = True
 
 print('start')
@@ -35,6 +35,7 @@ download = download[0].replace(',', '.')
 upload = upload[0].replace(',', '.')
 
 if writeCSV:
+    print('Write data to csv File')
     try:
         f = open('./speedtest.csv', 'a+')
         if os.stat('./speedtest.csv').st_size == 0:
@@ -45,6 +46,8 @@ if writeCSV:
     f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
 
 if writeInfluxDB:
+    print('write data to influxDB')
+    print('create data for db')
     speed_data = [
         {
             "measurement" : "internet_speed",
@@ -58,7 +61,9 @@ if writeInfluxDB:
             }
         }
     ]
-    client = InfluxDBClient('localhost', 8086, 'speedmonitor', 'pimylifeup', 'internetspeed')
+    print('connect to influxDB')
+    client = InfluxDBClient(host='localhost', port=8086, database='speedtest', user='influxdb', password='spdtst')
+    print('write data to influxDB')
     client.write_points(speed_data)
 
 
