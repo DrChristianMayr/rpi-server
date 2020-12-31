@@ -5,7 +5,7 @@ import time
 from influxdb import InfluxDBClient
 
 testinterval = 5 #
-writecsv = false
+writeCSV = false
 writeInfluxDB = true
 
 print('start')
@@ -15,7 +15,7 @@ except:
     pass
 
 try:
-    writecsv = os.environ['WRITE_CSV']
+    writeCSV = os.environ['WRITE_CSV']
 except:
     pass
 
@@ -34,7 +34,7 @@ ping = ping[0].replace(',', '.')
 download = download[0].replace(',', '.')
 upload = upload[0].replace(',', '.')
 
-if writecsv
+if writeCSV==true
     try:
         f = open('./speedtest.csv', 'a+')
         if os.stat('./speedtest.csv').st_size == 0:
@@ -44,7 +44,7 @@ if writecsv
 
     f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
 
-if writeInfluxDB
+if writeInfluxDB==true
     speed_data = [
         {
             "measurement" : "internet_speed",
