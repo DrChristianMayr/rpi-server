@@ -28,7 +28,7 @@ except:
     pass
 
 f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
-print(str(time.ctime(seconds)) +', Ping: ' + str(ping) + ' ms, Download: ' + str(download) + ' Mbit/s Upload: '+ str(upload) + ' Mbit/s')
+print(time.strftime('%m/%d/%y') + time.strftime('%H:%M')' + Ping: ' + str(ping) + ' ms, Download: ' + str(download) + ' Mbit/s Upload: '+ str(upload) + ' Mbit/s')
 print('Waiting for ' + str(testinterval) + ' seconds')
 time.sleep(testinterval) 
 print('end')
