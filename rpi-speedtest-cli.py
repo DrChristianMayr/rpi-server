@@ -8,7 +8,7 @@ testinterval = 5 #
 writeCSV = True
 writeInfluxDB = True
 
-print('start')
+print('conduct speedtest')
 try:
     testinterval = os.environ['TEST_INTERVAL']
 except:
@@ -62,7 +62,7 @@ if writeInfluxDB:
         }
     ]
     print('connect to influxDB')
-    client = InfluxDBClient(host='localhost', port=8086, database='speedtest', user='influxdb', password='spdtst')
+    client = InfluxDBClient(host='localhost', port=8086, database='speedtest', username='influxdb', password='spdtst')
     print('write data to influxDB')
     client.write_points(speed_data)
 
