@@ -49,7 +49,7 @@ if writeInfluxDB
         {
             "measurement" : "internet_speed",
             "tags" : {
-                "host": "127.0.0.1"
+                "host": "speedtest"
             },
             "fields" : {
                 "download": float(download),
