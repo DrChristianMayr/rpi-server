@@ -37,8 +37,8 @@ if args.writeInfluxDB:
 #while True:
     # conduct speedtest
     print('conduct speedtest')
-    #response = subprocess.Popen('speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
-    response = subprocess.Popen('speedtest-cli', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
+    response = subprocess.Popen('speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
+    #response = subprocess.Popen('speedtest-cli', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
     ping = re.findall('Ping:\s(.*?)\s', response, re.MULTILINE)
     download = re.findall('Download:\s(.*?)\s', response, re.MULTILINE)
     upload = re.findall('Upload:\s(.*?)\s', response, re.MULTILINE)
