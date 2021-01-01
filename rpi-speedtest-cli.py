@@ -98,7 +98,7 @@ def str2bool(v):
 __name__ = 'rpi-speedtest-cli'
 
 # Fetch environmental variables
-testinterval = int(os.environ.get('TEST_INTERVAL',60))
+testinterval = int(os.environ.get('TEST_INTERVAL',10))
 writeCSV = str2bool(os.environ.get('WRITE_CSV',False))
 writeInfluxDB = str2bool(os.environ.get('WRITE_INFLUXDB',True))
 influxDBhost = os.environ.get('WRITE_INFLUXDB','localhost')
