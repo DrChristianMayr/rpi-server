@@ -15,6 +15,7 @@ ENV TEST_INTERVAL=$tst_int
 ENV WRITE_CSV=$wrt_csv
 ENV WRITE_INFLUXDB=$wrt_iflxDB
 
+RUN env
 # Set the working directory to /app
 # in the container
 #WORKDIR /app
