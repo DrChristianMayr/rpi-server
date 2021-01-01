@@ -4,7 +4,7 @@ import subprocess
 import time
 from influxdb import InfluxDBClient
 
-testinterval = 5 #
+testinterval = 5*60 #
 writeCSV = True
 writeInfluxDB = True
 
