@@ -18,5 +18,5 @@ RUN pip install influxdb
 # Set the working directory to /app
 # in the container
 #WORKDIR /app
-CMD [ "python", "./rpi-speedtest-cli.py" ]
-#CMD ["python", "-u", "./rpi-speedtest-cli.py", " -t $TEST_INTERVAL", " -c $WRITE_CSV", " -i $WRITE_INFLUXDB"]
+#CMD [ "python", "./rpi-speedtest-cli.py" ]
+CMD ["python", "-u", "./rpi-speedtest-cli.py", " -t $TEST_INTERVAL", " -c $WRITE_CSV", " -i $WRITE_INFLUXDB"]
