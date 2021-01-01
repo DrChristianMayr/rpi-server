@@ -29,7 +29,7 @@ parser.add_argument("--writeInfluxDB", "-i", type=str2bool, nargs='?', const=Tru
 
 # Read arguments from the command line
 args = parser.parse_args()
-print(args.echo)
+print(args)
 
 # Check for --testinterval
 if args.testinterval:
