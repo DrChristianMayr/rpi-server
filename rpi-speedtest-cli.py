@@ -16,19 +16,20 @@ def str2bool(v):
         raise argparse.ArgumentTypeError('Boolean value expected.')
         
 
-testinterval = 5*60 #
+testinterval = 10 #
 writeCSV = True
 writeInfluxDB = True
 
 # Initiate the parser
 parser = argparse.ArgumentParser()
 # Add long and short argument
-parser.add_argument("--testinterval", "-t", help="set testinveral in s. [default = 300s (5 minutes)]")
+parser.add_argument("--testinterval", "-t", help="set testinveral in s. [default = 300s (5 minutes)]", type=int)
 parser.add_argument("--writeCSV", "-c", type=str2bool, nargs='?', const=True, default=True, help="set True/False to write CSV file. [default = True]")
 parser.add_argument("--writeInfluxDB", "-i", type=str2bool, nargs='?', const=True, default=True, help="set True/False to write into influxDB [default = True]")
 
 # Read arguments from the command line
 args = parser.parse_args()
+print(args.echo)
 
 # Check for --testinterval
 if args.testinterval:
