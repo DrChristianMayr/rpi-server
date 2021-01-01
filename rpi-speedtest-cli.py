@@ -34,7 +34,7 @@ if args.writeInfluxDB:
     print("Set writeInfluxDB to %s" % args.writeInfluxDB)
     writeInfluxDB=args.writeInfluxDB
 
-while True:
+#while True:
     # conduct speedtest
     print('conduct speedtest')
     #response = subprocess.Popen('speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
