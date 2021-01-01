@@ -11,7 +11,7 @@ ARG tst_int=60
 ARG wrt_csv=False
 ARG wrt_iflxDB=True
 
-ENV TEST_INTERVAL=$var_name
+ENV TEST_INTERVAL=$tst_int
 ENV WRITE_CSV=$wrt_csv
 ENV WRITE_INFLUXDB=$wrt_iflxDB
 
