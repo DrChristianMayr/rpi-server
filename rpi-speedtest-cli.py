@@ -106,6 +106,6 @@ if writeInfluxDB==True:
     get_module_logger(__name__).info('write data to influxDB')
     client.write_points(speed_data)
 
-get_module_logger(__name__).info(' Ping: ' + str(ping) + ' ms, Download: ' + str(download) + ' Mbit/s Upload: '+ str(upload) + ' Mbit/s')
+get_module_logger(__name__).info('Ping: ' + str(ping) + ' ms, Download: ' + str(download) + ' Mbit/s Upload: '+ str(upload) + ' Mbit/s')
 get_module_logger(__name__).info('Waiting for ' + str(testinterval) + ' seconds')
 time.sleep(testinterval)
