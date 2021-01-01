@@ -31,9 +31,9 @@ def str2bool(v):
         raise argparse.ArgumentTypeError('Boolean value expected.')
         
 
-testinterval = 10 #
+testinterval = 60 #
 writeCSV = False
-writeInfluxDB = False
+writeInfluxDB = True
 __name__ = 'rpi-speedtest-cli'
     
 # Initiate the parser
