@@ -97,14 +97,21 @@ def str2bool(v):
 
 __name__ = 'rpi-speedtest-cli'
 
+# Fetch environmental variables
 testinterval = int(os.environ.get('TEST_INTERVAL',60))
 writeCSV = str2bool(os.environ.get('WRITE_CSV',False))
 writeInfluxDB = str2bool(os.environ.get('WRITE_INFLUXDB',True))
-influxDBhost = os.environ.get('WRITE_INFLUXDB','influxDB')
+influxDBhost = os.environ.get('WRITE_INFLUXDB','localost')
 influxDBport = int(os.environ.get('WRITE_INFLUXDB',8086))
+influxDBdatabase = os.environ.get('INFLUXDB_DB','speedtest'))
+influxDBusername = os.environ.get('INFLUXDB_USER','influxdb')
+influxDBpassword = (os.environ.get('INFLUXDB_PASSWORD','spdtst'))
 
 get_module_logger(__name__).info("Set testinterval to %d seconds" % testinterval)
 get_module_logger(__name__).info("Set writeCSV to %s" % writeCSV)
+get_module_logger(__name__).info("Set writeInfluxDB to %s" % writeInfluxDB)
+get_module_logger(__name__).info("Set influxDB host to %s" % influxDBhost)
+get_module_logger(__name__).info("Set influxDB port to %d" % influxDBport)
 get_module_logger(__name__).info("Set writeInfluxDB to %s" % writeInfluxDB)
 get_module_logger(__name__).info("Set influxDB host to %s" % influxDBhost)
 get_module_logger(__name__).info("Set influxDB port to %d" % influxDBport)
@@ -148,7 +155,7 @@ if writeInfluxDB==True:
         }
     ]
     get_module_logger(__name__).info('connect to influxDB')
-    client = InfluxDBClient(host=influxDBhost, port=influxDBport, database='speedtest', username='influxdb', password='spdtst')
+    client = InfluxDBClient(host=influxDBhost, port=influxDBport, database=influxDBpassword, username=influxDBusername, password=influxDBpassword)
     get_module_logger(__name__).info('write data to influxDB')
     client.write_points(speed_data)
 
