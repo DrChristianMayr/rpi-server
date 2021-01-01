@@ -112,9 +112,9 @@ get_module_logger(__name__).info("Set writeCSV to %s" % writeCSV)
 get_module_logger(__name__).info("Set writeInfluxDB to %s" % writeInfluxDB)
 get_module_logger(__name__).info("Set influxDB host to %s" % influxDBhost)
 get_module_logger(__name__).info("Set influxDB port to %d" % influxDBport)
-get_module_logger(__name__).info("Set writeInfluxDB to %s" % writeInfluxDB)
-get_module_logger(__name__).info("Set influxDB host to %s" % influxDBhost)
-get_module_logger(__name__).info("Set influxDB port to %d" % influxDBport)
+get_module_logger(__name__).info("Set influxDB database to %s" % influxDBdatabase)
+get_module_logger(__name__).info("Set influxDB username host to %s" % influxDBusername)
+get_module_logger(__name__).info("Set influxDB password port to %s" % influxDBpassword)
 
 # conduct speedtest
 get_module_logger(__name__).info("conduct speedtest")
