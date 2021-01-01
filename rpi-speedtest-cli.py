@@ -74,7 +74,7 @@ download = download[0].replace(',', '.')
 upload = upload[0].replace(',', '.')
 
 if writeCSV==True:
-    print('Write data to csv File')
+    get_module_logger(__name__).info('Write data to csv File')
     try:
         f = open('./speedtest.csv', 'a+')
         if os.stat('./speedtest.csv').st_size == 0:
@@ -85,8 +85,8 @@ if writeCSV==True:
     f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
 
 if writeInfluxDB==True:
-    print('write data to influxDB')
-    print('create data for db')
+    get_module_logger(__name__).info('write data to influxDB')
+    get_module_logger(__name__).info('create data for db')
     speed_data = [
         {
             "measurement" : "internet_speed",
@@ -100,13 +100,13 @@ if writeInfluxDB==True:
             }
         }
     ]
-    print('connect to influxDB')
+    get_module_logger(__name__).info('connect to influxDB')
     client = InfluxDBClient(host='localhost', port=8086, database='speedtest', username='influxdb', password='spdtst')
-    print('write data to influxDB')
+    get_module_logger(__name__).info('write data to influxDB')
     client.write_points(speed_data)
 
-print(time.strftime('%m/%d/%y') + ', ' + time.strftime('%H:%M') + ' Ping: ' + str(ping) + ' ms, Download: ' + str(download) + ' Mbit/s Upload: '+ str(upload) + ' Mbit/s')
-print('Waiting for ' + str(testinterval) + ' seconds')
+get_module_logger(__name__).info(' Ping: ' + str(ping) + ' ms, Download: ' + str(download) + ' Mbit/s Upload: '+ str(upload) + ' Mbit/s')
+get_module_logger(__name__).info('Waiting for ' + str(testinterval) + ' seconds')
 time.sleep(testinterval)
 
-print('end')
+get_module_logger(__name__).info('end')
