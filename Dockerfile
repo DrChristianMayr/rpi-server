@@ -1,7 +1,10 @@
 FROM python:3
 
-RUN pip install speedtest-cli
+# Add the python script
+ADD rpi-speedtest-cli.py /
 
+# Install required Python packages
+RUN pip install speedtest-cli
 RUN pip install influxdb
 
 ARG tst_int=60
@@ -16,6 +19,4 @@ ENV WRITE_INFLUXDB=$wrt_iflxDB
 # in the container
 #WORKDIR /app
 
-# Copy the python script
-ADD rpi-speedtest-cli.py /
-CMD ["python", "-u", "rpi-speedtest-cli.py", " -t $TEST_INTERVAL", " -c $WRITE_CSV", " -i $WRITE_INFLUXDB"]
+CMD ["python", "-u", "./rpi-speedtest-cli.py", " -t $TEST_INTERVAL", " -c $WRITE_CSV", " -i $WRITE_INFLUXDB"]
