@@ -3,7 +3,6 @@ import logging
 import re
 import subprocess
 import time
-import argparse
 from influxdb import InfluxDBClient
 
 def db_exists():
@@ -96,47 +95,19 @@ def str2bool(v):
         raise argparse.ArgumentTypeError('Boolean value expected.')
         
 
-testinterval = 60 #
-writeCSV = False
-writeInfluxDB = True
 __name__ = 'rpi-speedtest-cli'
-influxDBhost = 'influxDB'
-influxDBport = 8086
 
-# Initiate the parser
-parser = argparse.ArgumentParser()
-
-# Add long and short argument
-parser.add_argument("-t", "--testinterval", help="set testinveral in s. [default = 300s (5 minutes)]", type=int)
-parser.add_argument("-c", "--writeCSV", type=str2bool, nargs='?', const=True, default=writeCSV, help="set True/False to write CSV file. [default = True]")
-parser.add_argument("-i", "--writeInfluxDB", type=str2bool, nargs='?', const=True, default=writeInfluxDB, help="set True/False to write into influxDB [default = True]")
-
-# Read arguments from the command line
-args = parser.parse_args()
-
-# Check for --testinterval
-if args.testinterval:
-    testinterval=args.testinterval
-    
-# Check for --writeCSV
-if args.writeCSV:
-    writeCSV=args.writeCSV
-    
-# Check for --testinterval
-if args.writeInfluxDB:
-    writeInfluxDB=args.writeInfluxDB
+testinterval = os.environ.get('TEST_INTERVAL',60)
+writeCSV = os.environ.get('WRITE_CSV'),False)
+writeInfluxDB = os.environ.get('WRITE_INFLUXDB'),True)
+influxDBhost = os.environ.get('WRITE_INFLUXDB'),'influxDB')
+influxDBport = os.environ.get('WRITE_INFLUXDB'),8086)
 
 get_module_logger(__name__).info("Set testinterval to %f seconds" % testinterval)
 get_module_logger(__name__).info("Set writeCSV to %s" % writeCSV)
 get_module_logger(__name__).info("Set writeInfluxDB to %s" % writeInfluxDB)
-
-#get_module_logger(__name__).info(os.environ['TEST_INTERVAL'])
-
-# printing environment variables
-print(os.environ)
-print(os.environ.get('TEST_INTERVAL'),60)
-print(os.environ.get('WRITE_CSV'),'False')
-print(os.environ.get('WRITE_INFLUXDB'),'True')
+get_module_logger(__name__).info("Set influxDB host to %s" % influxDBhost)
+get_module_logger(__name__).info("Set influxDB port to %f" % influxDBport)
 
 # conduct speedtest
 get_module_logger(__name__).info("conduct speedtest")
