@@ -1,5 +1,7 @@
 FROM python:3
 
+RUN pip install speedtest-cli
+
 RUN pip install influxdb
 
 WORKDIR ./docker
