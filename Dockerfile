@@ -2,4 +2,5 @@ FROM python:3
 
 RUN pip install influxdb
 
-CMD [ "python", " rpi-speedtest-cli.py" ]
+CMD ["rpi-speedtest-cli.py"]
+ENTRYPOINT ["python3"]
