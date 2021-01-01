@@ -14,7 +14,5 @@ ENV WRITE_INFLUXDB=$wrt_iflxDB
 
 RUN echo "Test interval: $TEST_INTERVAL"
 
-WORKDIR ./docker
 COPY . . 
-CMD ["rpi-speedtest-cli.py -t $TEST_INTERVAL -c $WRITE_CSV -i $WRITE_INFLUXDB"]
-ENTRYPOINT ["python3"]
+CMD ["python ", "-u", "rpi-speedtest-cli.py -t $TEST_INTERVAL -c $WRITE_CSV -i $WRITE_INFLUXDB"]
