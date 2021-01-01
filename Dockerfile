@@ -17,5 +17,5 @@ ENV WRITE_INFLUXDB=$wrt_iflxDB
 
 WORKDIR ./docker
 COPY . . 
-CMD ["rpi-speedtest-cli.py"]
+CMD ["rpi-speedtest-cli.py -t TEST_INTERVAL -c WRITE_CSV -i WRITE_INFLUXDB"]
 ENTRYPOINT ["python3"]
