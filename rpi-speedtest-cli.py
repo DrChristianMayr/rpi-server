@@ -59,7 +59,7 @@ if args.writeInfluxDB:
     download = download[0].replace(',', '.')
     upload = upload[0].replace(',', '.')
 
-    if writeCSV:
+    if writeCSV==True:
         print('Write data to csv File')
         try:
             f = open('./speedtest.csv', 'a+')
@@ -70,7 +70,7 @@ if args.writeInfluxDB:
 
         f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
 
-    if writeInfluxDB:
+    if writeInfluxDB==True:
         print('write data to influxDB')
         print('create data for db')
         speed_data = [
