@@ -10,8 +10,8 @@ def get_module_logger(mod_name):
     """
     To use this, do logger = get_module_logger(__name__)
     """
-    if not my_logger.handlers:
-        logger = logging.getLogger(mod_name)
+    logger = logging.getLogger(mod_name)
+    if not logger.handlers:
         handler = logging.StreamHandler()
         formatter = logging.Formatter(
             '%(asctime)s [%(name)-12s] %(levelname)-8s %(message)s')
