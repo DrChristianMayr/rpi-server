@@ -155,7 +155,7 @@ if writeInfluxDB==True:
         }
     ]
     get_module_logger(__name__).info('connect to influxDB')
-    client = InfluxDBClient(host=influxDBhost, port=influxDBport, database=influxDBpassword, username=influxDBusername, password=influxDBpassword)
+    client = InfluxDBClient(host=influxDBhost, port=influxDBport, database=influxDBdatabase, username=influxDBusername, password=influxDBpassword)
     get_module_logger(__name__).info('write data to influxDB')
     client.write_points(speed_data)
 
