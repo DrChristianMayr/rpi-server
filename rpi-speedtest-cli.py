@@ -35,7 +35,7 @@ testinterval = 60 #
 writeCSV = False
 writeInfluxDB = True
 __name__ = 'rpi-speedtest-cli'
-influxDBhost = 'influxdb'
+influxDBhost = 'influxDB'
 influxDBport = 8086
 
 # Initiate the parser
