@@ -130,6 +130,9 @@ get_module_logger(__name__).info("Set testinterval to %f seconds" % testinterval
 get_module_logger(__name__).info("Set writeCSV to %s" % writeCSV)
 get_module_logger(__name__).info("Set writeInfluxDB to %s" % writeInfluxDB)
 
+os.environ['HOME']
+
+
 # conduct speedtest
 get_module_logger(__name__).info("conduct speedtest")
 response = subprocess.Popen('speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
