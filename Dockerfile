@@ -18,4 +18,4 @@ ENV WRITE_INFLUXDB=$wrt_iflxDB
 
 # Copy the python script
 COPY rpi-speedtest-cli.py /rpi-speedtest-cli.py
-CMD ["python ", "-u", "rpi-speedtest-cli.py", " -t $TEST_INTERVAL", " -c $WRITE_CSV", " -i $WRITE_INFLUXDB"]
+CMD ["python", "-u", "rpi-speedtest-cli.py", " -t $TEST_INTERVAL", " -c $WRITE_CSV", " -i $WRITE_INFLUXDB"]
