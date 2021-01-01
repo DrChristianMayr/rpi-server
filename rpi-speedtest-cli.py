@@ -2,73 +2,85 @@ import os
 import re
 import subprocess
 import time
+import agrparse
 from influxdb import InfluxDBClient
 
 testinterval = 5*60 #
 writeCSV = True
 writeInfluxDB = True
 
-print('conduct speedtest')
-try:
-    testinterval = os.environ['TEST_INTERVAL']
-except:
-    pass
+# Initiate the parser
+parser = argparse.ArgumentParser()
+# Add long and short argument
+parser.add_argument("--testinterval", "-t", help="set testinveral in s. [default = 300s (5 minutes)]")
+parser.add_argument("--writeCSV", "-c", help="set True/False to write CSV file. [default = True]")
+parser.add_argument("--writeInfluxDB", "-i", help="set True/False to write into influxDB [default = True]")
 
-try:
-    writeCSV = os.environ['WRITE_CSV']
-except:
-    pass
+# Read arguments from the command line
+args = parser.parse_args()
 
-try:
-    writeInfluxDB = os.environ['WRITE_INFLUXDB']
-except:
-    pass
+# Check for --testinterval
+if args.testinterval:
+    print("Set testinterval to %f seconds" % args.testinterval)
+    testinterval=args.testinterval
+    
+# Check for --writeCSV
+if args.writeCSV:
+    print("Set writeCSV to %s" % args.writeCSV)
+    writeCSV=args.writeCSV
+    
+# Check for --testinterval
+if args.writeInfluxDB:
+    print("Set writeInfluxDB to %s" % args.writeInfluxDB)
+    writeInfluxDB=args.writeInfluxDB
 
-response = subprocess.Popen('speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
+while True:
+    # conduct speedtest
+    print('conduct speedtest')
+    response = subprocess.Popen('speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
 
-ping = re.findall('Ping:\s(.*?)\s', response, re.MULTILINE)
-download = re.findall('Download:\s(.*?)\s', response, re.MULTILINE)
-upload = re.findall('Upload:\s(.*?)\s', response, re.MULTILINE)
+    ping = re.findall('Ping:\s(.*?)\s', response, re.MULTILINE)
+    download = re.findall('Download:\s(.*?)\s', response, re.MULTILINE)
+    upload = re.findall('Upload:\s(.*?)\s', response, re.MULTILINE)
 
-ping = ping[0].replace(',', '.')
-download = download[0].replace(',', '.')
-upload = upload[0].replace(',', '.')
+    ping = ping[0].replace(',', '.')
+    download = download[0].replace(',', '.')
+    upload = upload[0].replace(',', '.')
 
-if writeCSV:
-    print('Write data to csv File')
-    try:
-        f = open('./speedtest.csv', 'a+')
-        if os.stat('./speedtest.csv').st_size == 0:
-                f.write('Date,Time,Ping (ms),Download (Mbit/s),Upload (Mbit/s)\r\n')
-    except:
-        pass
+    if writeCSV:
+        print('Write data to csv File')
+        try:
+            f = open('./speedtest.csv', 'a+')
+            if os.stat('./speedtest.csv').st_size == 0:
+                    f.write('Date,Time,Ping (ms),Download (Mbit/s),Upload (Mbit/s)\r\n')
+        except:
+            pass
 
-    f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
+        f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
 
-if writeInfluxDB:
-    print('write data to influxDB')
-    print('create data for db')
-    speed_data = [
-        {
-            "measurement" : "internet_speed",
-            "tags" : {
-                "host": "speedtest"
-            },
-            "fields" : {
-                "download": float(download),
-                "upload": float(upload),
-                "ping": float(ping)
+    if writeInfluxDB:
+        print('write data to influxDB')
+        print('create data for db')
+        speed_data = [
+            {
+                "measurement" : "internet_speed",
+                "tags" : {
+                    "host": "speedtest"
+                },
+                "fields" : {
+                    "download": float(download),
+                    "upload": float(upload),
+                    "ping": float(ping)
+                }
             }
-        }
-    ]
-    print('connect to influxDB')
-    client = InfluxDBClient(host='localhost', port=8086, database='speedtest', username='influxdb', password='spdtst')
-    print('write data to influxDB')
-    client.write_points(speed_data)
+        ]
+        print('connect to influxDB')
+        client = InfluxDBClient(host='localhost', port=8086, database='speedtest', username='influxdb', password='spdtst')
+        print('write data to influxDB')
+        client.write_points(speed_data)
 
-
-
-print(time.strftime('%m/%d/%y') + ', ' + time.strftime('%H:%M') + ' Ping: ' + str(ping) + ' ms, Download: ' + str(download) + ' Mbit/s Upload: '+ str(upload) + ' Mbit/s')
-print('Waiting for ' + str(testinterval) + ' seconds')
-time.sleep(testinterval) 
+    print(time.strftime('%m/%d/%y') + ', ' + time.strftime('%H:%M') + ' Ping: ' + str(ping) + ' ms, Download: ' + str(download) + ' Mbit/s Upload: '+ str(upload) + ' Mbit/s')
+    print('Waiting for ' + str(testinterval) + ' seconds')
+    time.sleep(testinterval)
+    
 print('end')
