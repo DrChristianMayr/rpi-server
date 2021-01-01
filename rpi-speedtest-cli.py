@@ -35,7 +35,9 @@ testinterval = 60 #
 writeCSV = False
 writeInfluxDB = True
 __name__ = 'rpi-speedtest-cli'
-    
+influxDBhost = 'influxdb'
+influxDBport = 8086
+
 # Initiate the parser
 parser = argparse.ArgumentParser()
 
@@ -102,7 +104,7 @@ if writeInfluxDB==True:
         }
     ]
     get_module_logger(__name__).info('connect to influxDB')
-    client = InfluxDBClient(host='localhost', port=8086, database='speedtest', username='influxdb', password='spdtst')
+    client = InfluxDBClient(host=influxDBhost, port=influxDBport, database='speedtest', username='influxdb', password='spdtst')
     get_module_logger(__name__).info('write data to influxDB')
     client.write_points(speed_data)
 
