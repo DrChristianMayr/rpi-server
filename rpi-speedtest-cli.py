@@ -45,27 +45,26 @@ parser.add_argument("--writeInfluxDB", "-i", type=str2bool, nargs='?', const=Tru
 
 # Read arguments from the command line
 args = parser.parse_args()
-get_module_logger(__name__).info(args)
 
 # Check for --testinterval
 if args.testinterval:
-    print("Set testinterval to %f seconds" % args.testinterval)
     testinterval=args.testinterval
     
 # Check for --writeCSV
 if args.writeCSV:
-    print("Set writeCSV to %s" % args.writeCSV)
     writeCSV=args.writeCSV
     
 # Check for --testinterval
 if args.writeInfluxDB:
-    print("Set writeInfluxDB to %s" % args.writeInfluxDB)
     writeInfluxDB=args.writeInfluxDB
+
+get_module_logger(__name__).info("Set testinterval to %f seconds" % testinterval)
+get_module_logger(__name__).info("Set writeCSV to %s" % writeCSV)
+get_module_logger(__name__).info("Set writeInfluxDB to %s" % writeInfluxDB)
 
 # conduct speedtest
 get_module_logger(__name__).info("conduct speedtest")
 response = subprocess.Popen('speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
-#response = subprocess.Popen('speedtest-cli', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
 ping = re.findall('Ping:\s(.*?)\s', response, re.MULTILINE)
 download = re.findall('Download:\s(.*?)\s', response, re.MULTILINE)
 upload = re.findall('Upload:\s(.*?)\s', response, re.MULTILINE)
