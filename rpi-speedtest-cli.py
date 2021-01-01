@@ -133,7 +133,7 @@ get_module_logger(__name__).info("Set writeInfluxDB to %s" % writeInfluxDB)
 #get_module_logger(__name__).info(os.environ['TEST_INTERVAL'])
 
 # printing environment variables
-print(os.environ)
+print(os.environ['TEST_INTERVAL'])
 
 # conduct speedtest
 get_module_logger(__name__).info("conduct speedtest")
