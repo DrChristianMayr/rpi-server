@@ -5,6 +5,17 @@ import time
 import argparse
 from influxdb import InfluxDBClient
 
+def str2bool(v):
+    if isinstance(v, bool):
+       return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+        
+
 testinterval = 5*60 #
 writeCSV = True
 writeInfluxDB = True
@@ -13,8 +24,8 @@ writeInfluxDB = True
 parser = argparse.ArgumentParser()
 # Add long and short argument
 parser.add_argument("--testinterval", "-t", help="set testinveral in s. [default = 300s (5 minutes)]")
-parser.add_argument("--writeCSV", "-c", help="set True/False to write CSV file. [default = True]")
-parser.add_argument("--writeInfluxDB", "-i", help="set True/False to write into influxDB [default = True]")
+parser.add_argument("--writeCSV", "-c", type=str2bool, nargs='?', const=True, default=True, help="set True/False to write CSV file. [default = True]")
+parser.add_argument("--writeInfluxDB", "-i", type=str2bool, nargs='?', const=True, default=True, help="set True/False to write into influxDB [default = True]")
 
 # Read arguments from the command line
 args = parser.parse_args()
