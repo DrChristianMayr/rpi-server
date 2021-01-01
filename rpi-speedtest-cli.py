@@ -17,7 +17,7 @@ def get_module_logger(mod_name):
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     logger.setLevel(logging.DEBUG)
-    return logger
+    #return logger
 
 def str2bool(v):
     if isinstance(v, bool):
