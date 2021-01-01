@@ -2,7 +2,7 @@ import os
 import re
 import subprocess
 import time
-import agrparse
+import argparse
 from influxdb import InfluxDBClient
 
 testinterval = 5*60 #
