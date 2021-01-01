@@ -18,5 +18,5 @@ ENV WRITE_INFLUXDB=$wrt_iflxDB
 # Set the working directory to /app
 # in the container
 #WORKDIR /app
-
-CMD ["python", "-u", "./rpi-speedtest-cli.py", " -t $TEST_INTERVAL", " -c $WRITE_CSV", " -i $WRITE_INFLUXDB"]
+CMD ["python", "./rpi-speedtest-cli.py"]
+#CMD ["python", "-u", "./rpi-speedtest-cli.py", " -t $TEST_INTERVAL", " -c $WRITE_CSV", " -i $WRITE_INFLUXDB"]
