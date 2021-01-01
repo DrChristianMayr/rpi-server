@@ -101,7 +101,7 @@ testinterval = int(os.environ.get('TEST_INTERVAL',60))
 writeCSV = str2bool(os.environ.get('WRITE_CSV',False))
 writeInfluxDB = str2bool(os.environ.get('WRITE_INFLUXDB',True))
 influxDBhost = os.environ.get('WRITE_INFLUXDB','influxDB')
-influxDBport = os.environ.get('WRITE_INFLUXDB',8086)
+influxDBport = int(os.environ.get('WRITE_INFLUXDB',8086))
 
 get_module_logger(__name__).info("Set testinterval to %d seconds" % testinterval)
 get_module_logger(__name__).info("Set writeCSV to %s" % writeCSV)
