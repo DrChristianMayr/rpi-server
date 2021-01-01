@@ -130,8 +130,10 @@ get_module_logger(__name__).info("Set testinterval to %f seconds" % testinterval
 get_module_logger(__name__).info("Set writeCSV to %s" % writeCSV)
 get_module_logger(__name__).info("Set writeInfluxDB to %s" % writeInfluxDB)
 
-get_module_logger(__name__).info(os.environ['TEST_INTERVAL'])
+#get_module_logger(__name__).info(os.environ['TEST_INTERVAL'])
 
+# printing environment variables
+print(os.environ)
 
 # conduct speedtest
 get_module_logger(__name__).info("conduct speedtest")
