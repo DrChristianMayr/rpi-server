@@ -7,11 +7,12 @@ RUN pip install influxdb
 ARG tst_int=60
 ARG wrt_csv=False
 ARG wrt_iflxDB=True
+
 ENV TEST_INTERVAL=$var_name
 ENV WRITE_CSV=$wrt_csv
 ENV WRITE_INFLUXDB=$wrt_iflxDB
 
-
+RUN echo "Test interval: $TEST_INTERVAL"
 
 WORKDIR ./docker
 COPY . . 
