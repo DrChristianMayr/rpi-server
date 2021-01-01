@@ -139,7 +139,6 @@ if writeCSV==True:
     f.write('{},{},{},{},{}\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), ping, download, upload))
 
 if writeInfluxDB==True:
-    get_module_logger(__name__).info('write data to influxDB')
     get_module_logger(__name__).info('create data for db')
     speed_data = [
         {
