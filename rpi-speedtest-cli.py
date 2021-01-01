@@ -98,10 +98,10 @@ def str2bool(v):
 __name__ = 'rpi-speedtest-cli'
 
 testinterval = os.environ.get('TEST_INTERVAL',60)
-writeCSV = os.environ.get('WRITE_CSV'),False)
-writeInfluxDB = os.environ.get('WRITE_INFLUXDB'),True)
-influxDBhost = os.environ.get('WRITE_INFLUXDB'),'influxDB')
-influxDBport = os.environ.get('WRITE_INFLUXDB'),8086)
+writeCSV = os.environ.get('WRITE_CSV',False)
+writeInfluxDB = os.environ.get('WRITE_INFLUXDB',True)
+influxDBhost = os.environ.get('WRITE_INFLUXDB','influxDB')
+influxDBport = os.environ.get('WRITE_INFLUXDB',8086)
 
 get_module_logger(__name__).info("Set testinterval to %f seconds" % testinterval)
 get_module_logger(__name__).info("Set writeCSV to %s" % writeCSV)
