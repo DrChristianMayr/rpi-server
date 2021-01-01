@@ -12,7 +12,10 @@ ENV TEST_INTERVAL=$var_name
 ENV WRITE_CSV=$wrt_csv
 ENV WRITE_INFLUXDB=$wrt_iflxDB
 
-RUN echo "Test interval: $TEST_INTERVAL"
+# Set the working directory to /app
+# in the container
+WORKDIR /app
 
-COPY . . 
+# Copy the python script
+COPY rpi-speedtest-cli.py /app/rpi-speedtest-cli.py
 CMD ["python ", "-u", "rpi-speedtest-cli.py -t $TEST_INTERVAL -c $WRITE_CSV -i $WRITE_INFLUXDB"]
