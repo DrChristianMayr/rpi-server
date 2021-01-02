@@ -105,7 +105,7 @@ influxDBhost = os.environ.get('INFLUXDB_HOST','localhost')
 influxDBport = int(os.environ.get('INFLUXDB_PORT',8086))
 influxDBdatabase = os.environ.get('INFLUXDB_DB','speedtest')
 influxDBusername = os.environ.get('INFLUXDB_USER','influxdb')
-influxDBpassword = os.environ.get('INFLUXDB_PASSWORD','spdtst')
+influxDBpassword = os.environ.get('INFLUXDB_USER_PASSWORD','spdtst')
 
 get_module_logger(__name__).info("Set testinterval to %d seconds" % testinterval)
 get_module_logger(__name__).info("Set writeCSV to %s" % writeCSV)
