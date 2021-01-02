@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     network_mode: 'bridge'
     ports:
-      - '8086:8086'
+      - 8086:8086
     environment:
       - INFLUXDB_DB=speedtest
       - INFLUXDB_USER=influxdb
@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
     network_mode: 'bridge'
     ports:
-      - '3000:3000'
+      - 3000:3000
     environment:
       - GF_SERVER_ROOT_URL=http://localhost
       - GF_AUTH_ANONYMOUS_ENABLED=true
