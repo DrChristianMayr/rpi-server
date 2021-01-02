@@ -9,6 +9,8 @@ services:
       - '8086:8086'
     environment:
       - INFLUXDB_DB=speedtest
+      - INFLUXDB_USER=influxdb
+      - INFLUXDB_USER_PASSWORD=spdtst
     volumes:
       - './data/influxdb:/var/lib/influxdb'
   
@@ -30,12 +32,19 @@ services:
       - influxdb
   
   speedtest:
-    image: roest/docker-speedtest-analyser #phikai/speedtest
+    image: rpi-speedtest-cli
     container_name: speedtest
     restart: unless-stopped
     network_mode: 'bridge'
     environment:
-      - CRONJOB_ITERATION=1
+      - TEST_INTERVAL=30
+      - WRITE_CSV=False
+      - WRITE_INFLUXDB=True
+      - INFLUXDB_HOST=influxdb
+      - INFLUXDB_PORT=8086
+      - INFLUXDB_DB=speedtest
+      - INFLUXDB_USER=influxdb
+      - INFLUXDB_USER_PASSWORD=spdtst
     links:
       - influxdb
     depends_on:
