@@ -12,7 +12,7 @@ services:
       - INFLUXDB_USER=influxdb
       - INFLUXDB_USER_PASSWORD=spdtst
     volumes:
-      - './data/influxdb:/var/lib/influxdb'
+      - influxdb:/var/lib/influxdb
   
   grafana:
     image: grafana/grafana:latest 
@@ -23,9 +23,12 @@ services:
       - '3000:3000'
     environment:
       - GF_SERVER_ROOT_URL=http://localhost
+      - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_SECURITY_ADMIN_PASSWORD=grafana_pwd
+      - GF_AUTH_PROXY_AUTO_SIGN_UP=false
+      - GF_AUTH_PROXY_ENABLED=true
     volumes:
-      - ./data/grafana:/var/lib/grafana
+      - grafana:/var/lib/grafana
     links:
       - influxdb:influxdb
     depends_on:
@@ -37,7 +40,7 @@ services:
     restart: unless-stopped
     network_mode: 'bridge'
     environment:
-      - TEST_INTERVAL=30
+      - TEST_INTERVAL=300
       - WRITE_CSV=False
       - WRITE_INFLUXDB=True
       - INFLUXDB_HOST=influxdb
@@ -45,7 +48,22 @@ services:
       - INFLUXDB_DB=speedtest
       - INFLUXDB_USER=influxdb
       - INFLUXDB_USER_PASSWORD=spdtst
+    volumes:
+      - speedtest:/var/lib/speedtest
     links:
       - influxdb
     depends_on:
       - influxdb
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - /home/xx/Desktop/cust/xx/Docker/nginx/reverse_proxy.conf:/etc/nginx/conf.d/default.conf
+      # /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.pem:/etc/nginx/cert/star_xx_com.pem
+      # /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.key:/etc/nginx/cert/star_xx_com.key
+      # /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.crt:/etc/nginx/cert/star_xx_com.crt
+    ports:
+      - 3001:3001
+      - 3002:3002
+    links:
+     - grafana 
