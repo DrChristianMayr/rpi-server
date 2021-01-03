@@ -70,12 +70,10 @@ services:
       - grafana
       - netdata
       - pihole
-      - wordpress
     depends_on:
       - grafana
       - netdata
       - pihole
-      - wordpress
       
   pihole:
     container_name: pihole
@@ -100,8 +98,7 @@ services:
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
       - NET_ADMIN
-      
-    
+         
   netdata:
     image: netdata/netdata
     container_name: netdata
@@ -117,42 +114,8 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-
-  wordpress:
-    image: wordpress
-    container_name: wordpress
-    restart: unless-stopped
-    network_mode: 'bridge'
-    ports:
-      - 90:80
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: exampleuser
-      WORDPRESS_DB_PASSWORD: examplepass
-      WORDPRESS_DB_NAME: exampledb
-    volumes:
-      - wordpress:/var/www/html
-    depends_on:
-      - db
-    links:
-      - db
-
-  db:
-    image: linuxserver/mariadb:latest
-    container_name: db
-    restart: unless-stopped
-    network_mode: 'bridge'
-    environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    volumes:
-      - db:/var/lib/mysql
       
 volumes:
   influxdb:
   grafana:
   speedtest:
-  wordpress:
-  db:
