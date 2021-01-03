@@ -131,7 +131,7 @@ services:
       - wordpress:/var/www/html
 
   db:
-    image: mariadb:latest
+    image: linuxserver/mariadb:latest
     restart: unless-stopped
     network_mode: 'bridge'
     environment:
