@@ -77,7 +77,7 @@ services:
     hostname: raspi.home # set to fqdn of host
     network_mode: 'bridge'
     ports:
-      - 1999:19999
+      - 19999:19999
     cap_add:
       - SYS_PTRACE
     security_opt:
