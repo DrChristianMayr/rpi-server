@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   influxdb:
     image: influxdb 
@@ -54,16 +54,14 @@ services:
       - influxdb
     depends_on:
       - influxdb
+      
   nginx:
     image: nginx:latest
     container_name: nginx
     volumes:
       - /home/pi/Documents/rpi-speedtest-cli/nginx_grafana_proxy.conf:/etc/nginx/conf.d/default.conf
-      # /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.pem:/etc/nginx/cert/star_xx_com.pem
-      # /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.key:/etc/nginx/cert/star_xx_com.key
-      # /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.crt:/etc/nginx/cert/star_xx_com.crt
     ports:
-      - 3001:3001
-      - 3002:3002
+      - 80:80
+      - 443:443
     links:
      - grafana 
