@@ -61,7 +61,7 @@ services:
     restart: unless-stopped
     network_mode: 'bridge'
     volumes:
-      - /home/pi/Documents/rpi-speedtest-cli/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
       - 81:81
