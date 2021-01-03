@@ -76,8 +76,8 @@ services:
     container_name: netdata
     hostname: raspi.home # set to fqdn of host
     network_mode: 'bridge'
-    expose:
-      - 19999
+    ports:
+      - 1999:19999
     cap_add:
       - SYS_PTRACE
     security_opt:
