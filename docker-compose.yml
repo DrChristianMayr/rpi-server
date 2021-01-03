@@ -67,9 +67,11 @@ services:
       - 80:80
       - 443:443
     links:
-     - grafana
+      - grafana
+      - netdata
     depends_on:
       - grafana
+      - netdata
     
   netdata:
     image: netdata/netdata
