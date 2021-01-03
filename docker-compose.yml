@@ -73,7 +73,9 @@ services:
     
   netdata:
     image: netdata/netdata
+    container_name: netdata
     hostname: raspi.home # set to fqdn of host
+    network_mode: 'bridge'
     ports:
       - 19999:19999
     cap_add:
