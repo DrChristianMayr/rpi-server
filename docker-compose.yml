@@ -137,6 +137,7 @@ services:
 
   db:
     image: linuxserver/mariadb:latest
+    container_name: db
     restart: unless-stopped
     network_mode: 'bridge'
     environment:
