@@ -121,8 +121,8 @@ services:
     container_name: wordpress
     restart: unless-stopped
     network_mode: 'bridge'
-    #ports:
-    #  - 8080:80
+    ports:
+      - 90:80
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: exampleuser
