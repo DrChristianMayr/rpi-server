@@ -68,4 +68,6 @@ services:
     links:
      - grafana
 volumes:
-  - influxdb
+  influxdb:
+  grafana:
+  speedtest:
