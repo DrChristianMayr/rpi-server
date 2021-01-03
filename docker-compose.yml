@@ -30,10 +30,9 @@ services:
     volumes:
       - grafana:/var/lib/grafana
     links:
-      - influxdb:influxdb
+      - influxdb
     depends_on:
       - influxdb
-      - speedtest
   
   speedtest:
     image: rpi-speedtest-cli
@@ -76,6 +75,7 @@ services:
       - grafana
       - netdata
       - pihole
+      - nginx2
       
   nginx2:
     image: nginx:latest
@@ -88,7 +88,6 @@ services:
       - 3000:3000
     links:
       - grafana
-      - nginx
       
   pihole:
     container_name: pihole
