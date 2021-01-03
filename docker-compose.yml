@@ -89,6 +89,7 @@ services:
       - grafana
       - nginx
     depends_on:
+      - nginx
       
   pihole:
     container_name: pihole
