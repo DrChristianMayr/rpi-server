@@ -33,7 +33,6 @@ services:
       - influxdb:influxdb
     depends_on:
       - influxdb
-      - grafana
       - speedtest
   
   speedtest:
