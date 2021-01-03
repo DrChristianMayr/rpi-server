@@ -70,10 +70,12 @@ services:
       - grafana
       - netdata
       - pihole
+      - wordpress
     depends_on:
       - grafana
       - netdata
       - pihole
+      - wordpress
       
   pihole:
     container_name: pihole
