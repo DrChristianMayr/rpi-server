@@ -66,7 +66,7 @@ services:
       - 443:443
     links:
      - grafana
-     depends_on:
+    depends_on:
       - grafana
 
 volumes:
