@@ -76,6 +76,7 @@ services:
       - grafana
       - netdata
       - pihole
+      
   nginx2:
     image: nginx:latest
     container_name: nginx2
@@ -87,8 +88,6 @@ services:
       - 3000:3000
     links:
       - grafana
-      - nginx
-    depends_on:
       - nginx
       
   pihole:
