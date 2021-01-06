@@ -122,6 +122,7 @@ services:
     container_name: homebridge
     network_mode: bridge
     ports:
+      - 8090:8090
       - 51993:51993
       - 51826:51826/tcp
     environment:
