@@ -122,6 +122,7 @@ services:
     container_name: homebridge
     network_mode: bridge
     ports:
+      - 51993:51993
       - 51826:51826/tcp
     expose:
       - 8080
@@ -130,7 +131,7 @@ services:
       - PGID=1000
       - PUID=1000
       - HOMEBRIDGE_CONFIG_UI=1
-      - HOMEBRIDGE_CONFIG_UI_PORT=8080
+      - HOMEBRIDGE_CONFIG_UI_PORT=8090
     volumes:
       - homebridge:/homebridge   
 volumes:
