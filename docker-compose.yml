@@ -100,7 +100,7 @@ services:
       - NET_ADMIN
          
   netdata:
-    image: netdata/netdata
+    image: netdata/netdata:latest
     container_name: netdata
     restart: always
     hostname: raspi.home # set to fqdn of host
