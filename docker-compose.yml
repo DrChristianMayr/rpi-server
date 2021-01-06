@@ -115,9 +115,16 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-  
+    
+   watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    
   homebridge:
-    image: oznu/homebridge:ubuntu
+    image: oznu/homebridge:latest
     restart: always
     container_name: homebridge
     network_mode: host
@@ -125,9 +132,10 @@ services:
       - PGID=1000
       - PUID=1000
       - HOMEBRIDGE_CONFIG_UI=1
-      - HOMEBRIDGE_CONFIG_UI_PORT=8090
+      - HOMEBRIDGE_CONFIG_UI_PORT=8581
     volumes:
-      - homebridge:/homebridge   
+      - homebridge:/homebridge
+      
 volumes:
   influxdb:
   grafana:
