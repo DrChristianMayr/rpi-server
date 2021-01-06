@@ -124,7 +124,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     
   homebridge:
-    image: oznu/homebridge:latest
+    image: oznu/homebridge:raspberry-pi
     restart: always
     container_name: homebridge
     network_mode: host
