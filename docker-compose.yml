@@ -124,8 +124,6 @@ services:
     ports:
       - 51993:51993
       - 51826:51826/tcp
-    expose:
-      - 8080
     environment:
       - TZ='Europe/Vienna'
       - PGID=1000
