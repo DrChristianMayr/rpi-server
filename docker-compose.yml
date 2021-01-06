@@ -58,7 +58,7 @@ services:
   nginx:
     image: nginx:latest
     container_name: nginx
-    restart: unless-stopped
+    restart: always
     network_mode: 'bridge'
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
@@ -70,10 +70,10 @@ services:
       - grafana
       - netdata
       - pihole
-    depends_on:
-      - grafana
-      - netdata
-      - pihole
+    #depends_on:
+      #- grafana
+      #- netdata
+      #- pihole
       
   pihole:
     container_name: pihole
@@ -102,6 +102,7 @@ services:
   netdata:
     image: netdata/netdata
     container_name: netdata
+    restart: always
     hostname: raspi.home # set to fqdn of host
     network_mode: 'bridge'
     ports:
