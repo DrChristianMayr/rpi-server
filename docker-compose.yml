@@ -70,6 +70,7 @@ services:
       - grafana
       - netdata
       - pihole
+      - homebridge
     #depends_on:
       #- grafana
       #- netdata
