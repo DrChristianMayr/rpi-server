@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   influxdb:
     image: influxdb:latest
@@ -124,7 +124,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     
   homebridge:
-    image: oznu/homebridge:raspberry-pi
+    image: oznu/homebridge:latest
     restart: always
     container_name: homebridge
     network_mode: host
@@ -132,7 +132,7 @@ services:
       - PGID=1000
       - PUID=1000
       - HOMEBRIDGE_CONFIG_UI=1
-      - HOMEBRIDGE_CONFIG_UI_PORT=8581
+      - HOMEBRIDGE_CONFIG_UI_PORT=8090
     volumes:
       - homebridge:/homebridge
       
