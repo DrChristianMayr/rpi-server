@@ -120,17 +120,13 @@ services:
     image: oznu/homebridge:latest
     restart: always
     container_name: homebridge
-    network_mode: bridge
-    ports:
-      - 8090:8090
-      - 51993:51993
-      - 51826:51826/tcp
+    network_mode: host
     environment:
       - TZ='Europe/Vienna'
       - PGID=1000
       - PUID=1000
       - HOMEBRIDGE_CONFIG_UI=1
-      - HOMEBRIDGE_CONFIG_UI_PORT=8090
+      - HOMEBRIDGE_CONFIG_UI_PORT=8581
     volumes:
       - homebridge:/homebridge   
 volumes:
