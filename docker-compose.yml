@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   influxdb:
     image: influxdb:latest
@@ -122,22 +122,8 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    
-  homebridge:
-    image: oznu/homebridge:latest
-    restart: always
-    container_name: homebridge
-    network_mode: host
-    environment:
-      - PGID=1000
-      - PUID=1000
-      - HOMEBRIDGE_CONFIG_UI=1
-      - HOMEBRIDGE_CONFIG_UI_PORT=8090
-    volumes:
-      - homebridge:/homebridge
       
 volumes:
   influxdb:
   grafana:
   speedtest:
-  homebridge:
