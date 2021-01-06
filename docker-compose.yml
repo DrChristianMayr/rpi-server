@@ -121,11 +121,10 @@ services:
     container_name: homebridge
     network_mode: host
     environment:
-      - TZ='Europe/Vienna'
       - PGID=1000
       - PUID=1000
       - HOMEBRIDGE_CONFIG_UI=1
-      - HOMEBRIDGE_CONFIG_UI_PORT=8581
+      - HOMEBRIDGE_CONFIG_UI_PORT=8090
     volumes:
       - homebridge:/homebridge   
 volumes:
