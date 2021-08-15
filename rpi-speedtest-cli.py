@@ -119,6 +119,7 @@ get_module_logger(__name__).info("Set influxDB password port to %s" % influxDBpa
 # conduct speedtest
 get_module_logger(__name__).info("conduct speedtest")
 response = subprocess.Popen('speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
+get_module_logger(__name__).info("speedtest finished")
 ping = re.findall('Ping:\s(.*?)\s', response, re.MULTILINE)
 download = re.findall('Download:\s(.*?)\s', response, re.MULTILINE)
 upload = re.findall('Upload:\s(.*?)\s', response, re.MULTILINE)
