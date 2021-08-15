@@ -126,7 +126,7 @@ upload = re.findall('Upload:\s(.*?)\s', response, re.MULTILINE)
 ping = ping[0].replace(',', '.')
 download = download[0].replace(',', '.')
 upload = upload[0].replace(',', '.')
-get_module_logger(__name__).info("Result: %s, %s, %s" % ping % download % upload)
+get_module_logger(__name__).info("Result: %s, %s, %s" % (ping, download, upload))
 
 if writeCSV==True:
     get_module_logger(__name__).info('Write data to csv File')
