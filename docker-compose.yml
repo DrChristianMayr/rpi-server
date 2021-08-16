@@ -122,6 +122,7 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      
   homebridge:
     image: oznu/homebridge:latest
     container_name: homebridge
