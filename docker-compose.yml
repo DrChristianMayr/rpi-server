@@ -1,7 +1,7 @@
 version: '3'
 services:
   influxdb:
-    image: arm64v8/influxdb:latest
+    image: hypriot/rpi-influxdb:latest
     container_name: influxdb
     restart: unless-stopped
     network_mode: 'bridge'
