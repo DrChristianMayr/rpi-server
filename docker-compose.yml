@@ -75,29 +75,29 @@ services:
       #- netdata
       #- pihole
       
-  #pihole:
-  #  container_name: pihole
-  #  image: pihole/pihole:latest
-  #  network_mode: 'bridge'
-  #  restart: unless-stopped
-  #  ports:
-  #    - "53:53/tcp"
-  #    - "53:53/udp"
-  #    - "67:67/udp"
-  #  expose:
-  #    - 80
-  #    - 443
-  #  environment:
-  #    TZ: 'Europe/Vienna'
-  #    WEBPASSWORD: pihole_pwd
-  #  # Volumes store your data between container upgrades
-  #  volumes:
-  #    - './etc-pihole/:/etc/pihole/'
-  #    - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
-  #  # Recommended but not required (DHCP needs NET_ADMIN)
-  #  #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
-  #  cap_add:
-  #    - NET_ADMIN
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    network_mode: 'bridge'
+    restart: unless-stopped
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+    expose:
+      - 53
+      - 443
+    environment:
+      TZ: 'Europe/Vienna'
+      WEBPASSWORD: pihole_pwd
+    # Volumes store your data between container upgrades
+    volumes:
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    # Recommended but not required (DHCP needs NET_ADMIN)
+       https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
          
   netdata:
     image: netdata/netdata:latest
